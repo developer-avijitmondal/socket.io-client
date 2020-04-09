@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center active">
+            Online
+            
+          </li>
+          <li *ngFor="let logged of showLoggedUser; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+           
+            <a [class.disabled]="selectedIndex === i"  (click)="chatWith(logged.id,i)" style="cursor: pointer">{{ logged.email }}</a>
+            <span class="badge badge-primary badge-pill">2</span>
+          </li>
+
+
+
+        </ul>
+      </div>
+      <div class="col-md-8" *ngIf="enableRoom">
+        <div *ngFor="let message of messages">
+            {{message.message}}
+        </div>
+  
+        <form name="form" (ngSubmit)="f.form.valid && sendMessage()" #f="ngForm" novalidate>
+            <fieldset>
+              <legend>Send Message</legend>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Message</label>
+                <input type="text" name="message" [(ngModel)]="model.message" 
+                #message="ngModel" class="form-control" placeholder="Enter Message">
+                <div *ngIf="f.submitted && message.invalid" class="alert alert-danger">
+                    <div *ngIf="message.errors.required">message is required</div>
+                </div>
+              </div>
+  
+              <button type="submit" class="btn btn-primary">Send</button>
+            </fieldset>
+          </form>
+      </div>
+    </div>
+  </div>
