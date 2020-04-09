@@ -47,6 +47,11 @@ export class SocketioService {
     //this.socket.emit('join', this.staticRoomNumber);
   }
 
+  public joinStaticRoom(room){ //console.log(userEmail);
+    //this.socket.emit('join', room);
+    this.socket.emit('join', this.staticRoomNumber);
+  }
+
   public checkUserJoinedOnRoom(){
     return Observable.create((observer) => {  
       this.socket.on('user-joined', (roomStatus) => {  

@@ -120,8 +120,21 @@ export class RoommessageComponent implements OnInit {
           this.serverRoomStatus=roomStatus['room'];  
           console.log(this.serverRoomStatus.length);
 
-          sessionStorage.removeItem('connections');
-          sessionStorage.setItem('connections', JSON.stringify(this.serverRoomStatus));
+          let checkRoomConnection={
+            room_id:res['result'][0].id,
+            withUser:data,
+            connection:this.serverRoomStatus
+          };
+
+          this._userService.checkRoomConnections(checkRoomConnection).subscribe(res=>{
+            console.log(res);
+            //console.log(res.result.connection);
+          },err=>{
+
+          });
+
+          // sessionStorage.removeItem('connections');
+          // sessionStorage.setItem('connections', JSON.stringify(this.serverRoomStatus));
 
           // if(localStorage.getItem('connections')==null){
           //   localStorage.setItem('connections', JSON.stringify(this.serverRoomStatus));
@@ -197,20 +210,20 @@ export class RoommessageComponent implements OnInit {
           
       });
 
-      let getConnections=sessionStorage.getItem('connections');
+      //let getConnections=sessionStorage.getItem('connections');
 
       
-      let checkRoomConnection={
-        room_id:res['result'][0].id,
-        withUser:data,
-        connection:getConnections
-      };
+      // let checkRoomConnection={
+      //   room_id:res['result'][0].id,
+      //   withUser:data,
+      //   connection:getConnections
+      // };
       
    
      
-      console.log('checkRoomConnection');
-      console.log(checkRoomConnection);
-      console.log('end checkRoomConnection');
+      // console.log('checkRoomConnection');
+      // console.log(checkRoomConnection);
+      // console.log('end checkRoomConnection');
 
       // this._userService.checkRoomConnections(checkRoomConnection).subscribe(res=>{
       //   console.log(res);

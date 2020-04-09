@@ -13,6 +13,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -60,6 +61,7 @@ import { RoommessageComponent } from './roommessage/roommessage.component';
     FlashMessagesModule.forRoot(),
     BrowserAnimationsModule,
     MatBadgeModule,MatButtonModule,MatIconModule,MatToolbarModule,
+    DeviceDetectorModule.forRoot()
 
     // SocketIoModule.forRoot(config)
   ],
