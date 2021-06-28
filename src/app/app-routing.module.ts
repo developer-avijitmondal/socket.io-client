@@ -13,6 +13,8 @@ import { ChattwoComponent } from './chattwo/chattwo.component';
 import { ChatagainComponent } from './chatagain/chatagain.component';
 import { UsertouserchatComponent } from './usertouserchat/usertouserchat.component';
 import { RoommessageComponent } from './roommessage/roommessage.component';
+import { VideochatComponent } from './videochat/videochat.component';
+
 
 const routes: Routes = [
   { path:'home', redirectTo:'',pathMatch:'full' },
@@ -26,6 +28,7 @@ const routes: Routes = [
   { path:'chat-again',component: ChatagainComponent },
   { path:'user-to-user',component: UsertouserchatComponent },
   { path:'message',component: RoommessageComponent },
+  { path:'video-call',component: VideochatComponent },
 
   { path:'dashboard',component: DashboardComponent,canActivate:[AuthGuard] },
 ];

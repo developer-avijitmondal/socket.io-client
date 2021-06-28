@@ -31,6 +31,7 @@ import { ChattwoComponent } from './chattwo/chattwo.component';
 import { ChatagainComponent } from './chatagain/chatagain.component';
 import { UsertouserchatComponent } from './usertouserchat/usertouserchat.component';
 import { RoommessageComponent } from './roommessage/roommessage.component';
+import { VideochatComponent } from './videochat/videochat.component';
 
 // const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -50,7 +51,8 @@ import { RoommessageComponent } from './roommessage/roommessage.component';
     ChattwoComponent,
     ChatagainComponent,
     UsertouserchatComponent,
-    RoommessageComponent
+    RoommessageComponent,
+    VideochatComponent
   ],
   imports: [
     BrowserModule,

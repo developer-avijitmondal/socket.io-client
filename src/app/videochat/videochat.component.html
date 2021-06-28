@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+    <form name="form" (ngSubmit)="f.form.valid && sendMessage()" #f="ngForm"
+    novalidate>
+    <div id="room-selection-container" class="centered" *ngIf="formContainer">
+      <h1>WebRTC video conference</h1>
+      <label>Enter the number of the room you want to connect</label>
+      <input id="room-input" type="text" name="message" [(ngModel)]="model.message"
+      #message="ngModel"/>
+      <button id="connect-button">CONNECT</button>
+    </div>
+    </form>
+
+    <div id="video-chat-container" *ngIf="!formContainer" class="video-position"><!--style="display: none"-->
+      <video id="local-video" autoplay="autoplay"></video>
+      <video #video> </video>
+      <!--muted="muted"-->
+      <video id="remote-video" autoplay="autoplay"></video>
+    </div>
+
+    <!-- <div class="col-md-4">
+
+    </div>
+    <div class="col-md-8">
+
+    </div> -->
+  </div>
+</div>
