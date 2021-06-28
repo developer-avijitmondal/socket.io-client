@@ -19,11 +19,11 @@ export class ChatagainComponent implements OnInit {
   deviceInfo;
 
   constructor(private socketService: SocketioService,private _userService:UserService,
-    private deviceService: DeviceDetectorService) { 
+    private deviceService: DeviceDetectorService) {
     if(this._userService.isLoggedIn()){
       this.userEmail=localStorage.getItem('loggedUserName');
     }
-    //console.log(this.userEmail);
+    console.log(this.userEmail);
     this.socketService.joinStaticRoom(this.userEmail);
     this.epicFunction();
 

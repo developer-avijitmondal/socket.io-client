@@ -33,9 +33,9 @@ export class RoommessageComponent implements OnInit {
   disableWith;
   selectedIndex: number = null;
 
-  
+
   constructor(private socketService: SocketioService,private _userService:UserService,
-    ) { 
+    ) {
     if(this._userService.isLoggedIn()){
       this.userEmail=localStorage.getItem('loggedUserName');
       console.log(localStorage.getItem('loggedId'));
@@ -52,7 +52,7 @@ export class RoommessageComponent implements OnInit {
       room:this.getRoomName
     };
     this.socketService.sendRoomMessage(userMessage);
-    
+
   }
 
   ngOnInit() {
@@ -61,17 +61,17 @@ export class RoommessageComponent implements OnInit {
       this.loggedUser=res.result;
         console.log(this.loggedUser);
         for(var index in this.loggedUser)
-        { 
-          console.log(this.loggedUser[index].User.email); 
+        {
+          console.log(this.loggedUser[index].User.email);
           if(this.loggedUser[index].User.email!=localStorage.getItem('loggedUserName')){
             this.showLoggedUser.push({email:this.loggedUser[index].User.email,id:this.loggedUser[index].User.id});
-          } 
+          }
 
         } console.log(this.showLoggedUser);
 
       },error=>{
         console.log(error);
-        
+
       });
 
       this.socketService
@@ -80,7 +80,7 @@ export class RoommessageComponent implements OnInit {
         this.messages.push(message);
         console.log(this.messages);
       });
- 
+
   }
 
 
@@ -92,23 +92,24 @@ export class RoommessageComponent implements OnInit {
       withUser:data
     };
     this._userService.createChatRoom(users).subscribe(res=>{
+      console.log(`showing the result :: ${res}`);
       console.log(res);
       console.log(res['result'][0].roomname);
 
       if(res['result'][0].roomname){
-        this.enableRoom=true;
+        this.enableRoom= true;
       }else{
-        this.enableRoom=false;
+        this.enableRoom= false;
       }
-      this.getRoomName=res['result'][0].roomname;
+      this.getRoomName= res['result'][0].roomname;
       //localStorage.setItem('loggedId', this.getRoomName);
       let totalData={
-        room:this.getRoomName,
-        withUser:data
+        room: this.getRoomName,
+        withUser: data
       };
 
       this.socketService.joinRoom(totalData);
-      
+
       this.socketService
       .checkUserJoinedOnRoom()
         .subscribe((roomStatus: string) => {
@@ -116,8 +117,8 @@ export class RoommessageComponent implements OnInit {
           console.log(roomStatus['room']);
 
           console.log('withUser '+roomStatus['withUser']);
-          // let serverRoomStatus:any=roomStatus['room']; 
-          this.serverRoomStatus=roomStatus['room'];  
+          // let serverRoomStatus:any=roomStatus['room'];
+          this.serverRoomStatus=roomStatus['room'];
           console.log(this.serverRoomStatus.length);
 
           let checkRoomConnection={
@@ -130,7 +131,7 @@ export class RoommessageComponent implements OnInit {
             console.log(res);
             //console.log(res.result.connection);
           },err=>{
-
+            console.log(err)
           });
 
           // sessionStorage.removeItem('connections');
@@ -144,8 +145,8 @@ export class RoommessageComponent implements OnInit {
           // }
 
           //localStorage.removeItem('connections');
-          
-          
+
+
 
 
           // localStorage.setItem('connections', JSON.stringify(this.connections));
@@ -163,7 +164,7 @@ export class RoommessageComponent implements OnInit {
           // }else{
           //   console.log('got session data');
           //   let getConnections=JSON.parse(localStorage.getItem('connections'));
-          //   console.log(getConnections); 
+          //   console.log(getConnections);
           //   console.log('end got session data');
           //   if(roomStatus['withUser']==data){
           //     for (let key in serverRoomStatus) {
@@ -179,7 +180,7 @@ export class RoommessageComponent implements OnInit {
           // }
 
           //let getConnections=JSON.parse(localStorage.getItem('connections'));
-          
+
           // for(let key in getConnections){
           //   console.log('key');
           //   console.log(getConnections[key]['withUser']);
@@ -192,35 +193,35 @@ export class RoommessageComponent implements OnInit {
           //   }
           //   localStorage.removeItem('connections');
           //   //update session
-            
+
           //   console.log('end key');
           // }
 
           //localStorage.setItem('connections', JSON.stringify(this.connections));
 
           //console.log(getConnections);
-          
+
           //console.log(localStorage.getItem('connections'));
           // let serverRoomStatus:any=roomStatus;
           // for (let key in serverRoomStatus) {
           //     console.log ('key: ' +  key + ',  value: ' + roomStatus[key]);
           //     this.connections.push({key:key,value:roomStatus[key],withUser:data});
           // }
-          
-          
+
+
       });
 
       //let getConnections=sessionStorage.getItem('connections');
 
-      
+
       // let checkRoomConnection={
       //   room_id:res['result'][0].id,
       //   withUser:data,
       //   connection:getConnections
       // };
-      
-   
-     
+
+
+
       // console.log('checkRoomConnection');
       // console.log(checkRoomConnection);
       // console.log('end checkRoomConnection');
@@ -236,7 +237,7 @@ export class RoommessageComponent implements OnInit {
       //   //     RoomCon_id:roomConId,
       //   //     connection:serverRoomStatus,
       //   //     withUser:data,
-      //   //   };  
+      //   //   };
       //   //   console.log(updateRoomCon);
       //   //   this._userService.updateRoomConnections(updateRoomCon).subscribe(res=>{
       //   //     //console.log(res);
